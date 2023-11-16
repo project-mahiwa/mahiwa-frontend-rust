@@ -7,3 +7,7 @@ extern "C" {
 pub fn print(string: &str) {
     unsafe { _print(string.as_ptr(), string.len()) }
 }
+pub fn println(string: &str) {
+    print(string);
+    print("\n");
+}
