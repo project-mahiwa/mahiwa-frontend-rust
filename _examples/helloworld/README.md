@@ -6,7 +6,9 @@ cargo init
 
 ```
 rustup target add wasm32-unknown-unknown
-cargo build
+cargo build --release
+wasm2wat target/wasm32-unknown-unknown/release/helloworld.wasm -o helloworld.wat
+cp target/wasm32-unknown-unknown/release/helloworld.wasm helloworld.wasm
 ```
 
 ## target
