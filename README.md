@@ -1,4 +1,4 @@
-# mahiwa-sdk-rust
+# mahiwa_frontend_rust
 
 ## Document
 
