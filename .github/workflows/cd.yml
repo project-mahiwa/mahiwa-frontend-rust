@@ -1,4 +1,4 @@
-name: Rust CD
+name: crates.ioへの登録
 
 on:
   release:
