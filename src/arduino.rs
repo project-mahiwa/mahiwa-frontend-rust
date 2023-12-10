@@ -11,6 +11,12 @@ extern "C" {
     /*
      * Trigonometry
      */
+    #[link_name = "cos"]
+    fn _cos(rad: i32) -> f64;
+    #[link_name = "sin"]
+    fn _sin(rad: i32) -> f64;
+    #[link_name = "tan"]
+    fn _tan(rad: i32) -> f64;
 
     /*
      * Math
@@ -74,6 +80,35 @@ extern "C" {
 /*
  * Trigonometry
 */
+/// Equivalent to Arduino's [cos](https://www.arduino.cc/reference/en/language/functions/trigonometry/cos/)
+///
+/// # Examples
+/// ```
+/// let result = arduino::cos(0.0); //result=1.0
+/// ```
+pub fn cos(rad: i32) -> f64 {
+    unsafe { _cos(rad) }
+}
+
+/// Equivalent to Arduino's [sin](https://www.arduino.cc/reference/en/language/functions/trigonometry/sin/)
+///
+/// # Examples
+/// ```
+/// let result = arduino::sin(0.0); //result=1.0
+/// ```
+pub fn sin(rad: i32) -> f64 {
+    unsafe { _sin(rad) }
+}
+
+/// Equivalent to Arduino's [tan](https://www.arduino.cc/reference/en/language/functions/trigonometry/tan/)
+///
+/// # Examples
+/// ```
+/// let result = arduino::tan(0.0); //result=1.0
+/// ```
+pub fn tan(rad: i32) -> f64 {
+    unsafe { _tan(rad) }
+}
 
 /*
  * Math
