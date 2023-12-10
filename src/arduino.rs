@@ -3,6 +3,11 @@ extern "C" {
     /*
      * Random Numbers
      */
+    #[link_name = "random"]
+    fn _random() -> i64;
+    #[link_name = "randomSeed"]
+    fn _randomSeed(seed: i64);
+
 
     /*
      * Characters
@@ -73,6 +78,27 @@ extern "C" {
 /*
 * Random Numbers
 */
+//// Equivalent to Arduino's [random](https://www.arduino.cc/reference/en/language/functions/random-numbers/random/)
+///
+/// # Examples
+/// ```
+/// let result = arduino::random(); //result=0~9
+/// ```
+pub fn random() -> i64 {
+    unsafe { _random() }
+}
+
+//// Equivalent to Arduino's [randomSeed](https://www.arduino.cc/reference/en/language/functions/random-numbers/randomseed/)
+///
+/// # Examples
+/// ```
+/// arduino::random_seed(0);
+/// ```
+pub fn random_seed(seed: i64) {
+    unsafe {
+        _randomSeed(seed);
+    }
+}
 
 /*
  * Characters
