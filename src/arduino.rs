@@ -7,6 +7,7 @@ extern "C" {
     /*
      * Characters
      */
+    // 一旦実装を保留する
 
     /*
      * Trigonometry
