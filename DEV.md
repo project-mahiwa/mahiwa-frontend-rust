@@ -7,3 +7,12 @@ Cargo.tomlのバージョンを上げてマージ→GitHubでリリースを切�
 ```
 cargo doc --open
 ```
+
+## コードの問題確認
+
+```
+cd _example/helloworld
+cargo build --release
+```
+
+でコンパイルエラーにならないかを確認

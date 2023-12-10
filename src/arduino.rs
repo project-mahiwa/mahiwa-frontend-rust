@@ -1,40 +1,46 @@
 #[link(wasm_import_module = "arduino")]
 extern "C" {
     /*
-    * Random Numbers
-    */
+     * Random Numbers
+     */
 
     /*
      * Characters
-    */
+     */
 
     /*
      * Trigonometry
-    */
+     */
 
     /*
      * Math
-    */
+     */
 
     /*
      * Analog I/O
-    */
+     */
 
     /*
      * Digital I/O
-    */
+     */
+    #[link_name = "digitalRead"]
+    fn _digitalRead(pin: u8) -> i32;
+    #[link_name = "digitalWrite"]
+    fn _digitalWrite(pin: u8, value: u8);
+    #[link_name = "pinMode"]
+    fn _pinMode(pin: u8, mode: u8);
 
     /*
-    * Time
-    */
+     * Time
+     */
     #[link_name = "delay"]
     fn _delay(ms: u32);
     #[link_name = "delayMicroseconds"]
     fn _delayMicroseconds(us: u32);
     #[link_name = "millis"]
-    fn _millis()->u64;
+    fn _millis() -> u64;
     #[link_name = "micros"]
-    fn _micros()->u64;
+    fn _micros() -> u64;
 }
 
 /*
@@ -60,11 +66,53 @@ extern "C" {
 /*
  * Digital I/O
 */
+/// Equivalent to Arduino's [digitalRead](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/)
+///
+/// # Examples
+///
+/// ```
+/// let read=arduino::digital_read(2);
+/// ```
+pub fn digital_read(pin: u8) -> i32 {
+    unsafe { _digitalRead(pin) }
+}
+
+/// Equivalent to Arduino's [digitalWrite](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/)
+///
+/// value 0:LOW, 1:HIGH
+///
+/// # Examples
+///
+/// ```
+/// arduino::digital_write(3,1);
+/// ```
+pub fn digital_write(pin: u8, value: u8) {
+    unsafe {
+        _digitalWrite(pin, value);
+    }
+}
+
+/// Equivalent to Arduino's [pinMode](https://www.arduino.cc/reference/en/language/functions/digital-io/pinmode/)
+///
+/// @todo ここのmodeの設定うまいことしたい
+///
+/// 1:INPUT, 2:OUTPUT, 3:INPUT_PULLUP
+///
+/// # Examples
+///
+/// ```
+/// arduino::pin_mode(2,1);
+/// ```
+pub fn pin_mode(pin: u8, mode: u8) {
+    unsafe {
+        _pinMode(pin, mode);
+    }
+}
 
 /*
 * Time
 */
-/// Equivalent to Arduino's delay
+/// Equivalent to Arduino's [delay](https://www.arduino.cc/reference/en/language/functions/time/delay/)
 ///
 /// # Examples
 ///
@@ -77,7 +125,7 @@ pub fn delay(ms: u32) {
     }
 }
 
-/// Equivalent to Arduino's delayMicroseconds
+/// Equivalent to Arduino's [delayMicroseconds](https://www.arduino.cc/reference/en/language/functions/time/delaymicroseconds/)
 ///
 /// # Examples
 ///
@@ -89,27 +137,23 @@ pub fn delay_microseconds(us: u32) {
         _delayMicroseconds(us);
     }
 }
-/// Equivalent to Arduino's millis
+/// Equivalent to Arduino's [millis](https://www.arduino.cc/reference/en/language/functions/time/millis/)
 ///
 /// # Examples
 ///
 /// ```
-/// let time = arduino::millis();
+/// let ms = arduino::millis();
 /// ```
-pub fn millis()->u64 {
-    unsafe {
-        _millis()
-    }
+pub fn millis() -> u64 {
+    unsafe { _millis() }
 }
-/// Equivalent to Arduino's millis
+/// Equivalent to Arduino's [micros](https://www.arduino.cc/reference/en/language/functions/time/micros/)
 ///
 /// # Examples
 ///
 /// ```
-/// let time = arduino::millis();
+/// let us = arduino::micros();
 /// ```
-pub fn micros()->u64 {
-    unsafe {
-        _micros()
-    }
+pub fn micros() -> u64 {
+    unsafe { _micros() }
 }
