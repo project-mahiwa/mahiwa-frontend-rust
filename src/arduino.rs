@@ -19,6 +19,10 @@ extern "C" {
     /*
      * Analog I/O
      */
+    #[link_name = "analogRead"]
+    fn _analogRead(pin: u8) -> u16;
+    #[link_name = "analogWrite"]
+    fn _analogWrite(pin: u8, value: u8);
 
     /*
      * Digital I/O
@@ -62,6 +66,32 @@ extern "C" {
 /*
  * Analog I/O
 */
+/// Equivalent to Arduino's [analogRead](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/)
+///
+/// # Examples
+///
+/// ```
+/// let read=arduino::analog_read(2);
+/// ```
+pub fn analog_read(pin: u8) -> u16 {
+    unsafe { _analogRead(pin) }
+}
+
+/// Equivalent to Arduino's [analogWrite](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/)
+///
+/// value 0~255
+///
+/// # Examples
+///
+/// ```
+/// arduino::analog_write(3,128);
+/// ```
+pub fn analog_write(pin: u8, value: u8) {
+    unsafe {
+        _analogWrite(pin, value);
+    }
+}
+
 
 /*
  * Digital I/O
