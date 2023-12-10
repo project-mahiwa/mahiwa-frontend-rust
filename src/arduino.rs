@@ -15,6 +15,22 @@ extern "C" {
     /*
      * Math
      */
+    #[link_name = "abs"]
+    fn _abs(x: i32) -> i32;
+    #[link_name = "constrain"]
+    fn _constrain(x: i32,a:i32,b:i32) -> i32;
+    #[link_name = "map"]
+    fn _map(value:i64,from_low:i64,from_high:i64,to_low:i64,to_high:i64) -> i64;
+    #[link_name = "max"]
+    fn _max(x:i64,y:i64) -> i64;
+    #[link_name = "min"]
+    fn _min(x:i64,y:i64) -> i64;
+    #[link_name = "pow"]
+    fn _pow(base:i64,exponent:i64) -> f64;
+    #[link_name = "sq"]
+    fn _sq(x:i32) -> i32;
+    #[link_name = "sqrt"]
+    fn _sqrt(x:i32) -> f64;
 
     /*
      * Analog I/O
@@ -62,6 +78,93 @@ extern "C" {
 /*
  * Math
 */
+/// Equivalent to Arduino's [abs](https://www.arduino.cc/reference/en/language/functions/math/abs/)
+///
+/// # Examples
+///
+/// ```
+/// let result = arduino::abs(2);
+/// ```
+pub fn abs(x: i32) -> i32 {
+    unsafe { _abs(x) }
+}
+
+/// Equivalent to Arduino's [constrain](https://www.arduino.cc/reference/en/language/functions/math/constrain/)
+///
+/// # Examples
+///
+/// ```
+/// // 10~100の範囲に値を制限する(sensor_valueが150なら100,0なら10,11なら11になる)
+/// let result = arduino::constrain(sensor_value,10,100);
+/// ```
+pub fn constrain(x: i32,a:i32,b:i32) -> i32 {
+    unsafe { _constrain(x,a,b) }
+}
+
+/// Equivalent to Arduino's [map](https://www.arduino.cc/reference/en/language/functions/math/map/)
+///
+/// # Examples
+///
+/// ```
+///  // 10bitの値を8bitにまるめる
+///  let result = arduino::map(sensor_value,0,1023,0,255);
+/// ```
+pub fn map(value:i64,from_low:i64,from_high:i64,to_low:i64,to_high:i64) -> i64 {
+    unsafe { _map(value,from_low,from_high,to_low,to_high) }
+}
+
+/// Equivalent to Arduino's [max](https://www.arduino.cc/reference/en/language/functions/math/max/)
+///
+/// # Examples
+///
+/// ```
+///  let result = arduino::max(2,3);//result=3
+/// ```
+pub fn max(x:i64,y:i64) -> i64 {
+    unsafe { _max(x,y) }
+}
+
+/// Equivalent to Arduino's [min](https://www.arduino.cc/reference/en/language/functions/math/min/)
+///
+/// # Examples
+///
+/// ```
+///  let result = arduino::min(2,3);//result=2
+/// ```
+pub fn min(x:i64,y:i64) -> i64 {
+    unsafe { _min(x,y) }
+}
+
+/// Equivalent to Arduino's [pow](https://www.arduino.cc/reference/en/language/functions/math/pow/)
+///
+/// # Examples
+/// ```
+/// let result = arduino::pow(2,3);//result=8
+/// ```
+pub fn pow(base:i64,exponent:i64) -> f64 {
+    unsafe { _pow(base,exponent) }
+}
+
+/// Equivalent to Arduino's [sq](https://www.arduino.cc/reference/en/language/functions/math/sq/)
+///
+/// # Examples
+/// ```
+/// let result = arduino::sq(2); //result=4
+/// ```
+pub fn sq(x:i32) -> i32 {
+    unsafe { _sq(x) }
+}
+
+/// Equivalent to Arduino's [sqrt](https://www.arduino.cc/reference/en/language/functions/math/sqrt/)
+///
+/// # Examples
+/// ```
+/// let result = arduino::sqrt(4); //result=2.0
+/// ```
+pub fn sqrt(x:i32) -> f64 {
+    unsafe { _sqrt(x) }
+}
+
 
 /*
  * Analog I/O
