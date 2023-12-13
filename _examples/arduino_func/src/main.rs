@@ -15,13 +15,29 @@ fn _start() {
      */
     // randomSeedが効いていることを確認する
     serial::println("😀");
+    serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    let rand1 = arduino::random();
-    serial::println(rand1.numtoa_str(10, &mut buf));
+    serial::println(arduino::random().numtoa_str(10, &mut buf));
+    serial::println(arduino::random().numtoa_str(10, &mut buf));
     arduino::random_seed(2);
-    // serial::println();
+    serial::println("===SEED:2 ===");
+    serial::println(arduino::random().numtoa_str(10, &mut buf));
+    serial::println(arduino::random().numtoa_str(10, &mut buf));
+    serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    // serial::println(arduino::random().to_str());
+    serial::println(arduino::random().numtoa_str(10, &mut buf));
+    serial::println(arduino::random().numtoa_str(10, &mut buf));
+
+    // resut
+    // ===SEED:1 ===
+    // 1481765933
+    // 1085377743
+    // ===SEED:2 ===
+    // 816048218
+    // 688989553
+    // ===SEED:1 ===
+    // 1481765933
+    // 1085377743
 
     /*
      * Characters
