@@ -9,7 +9,6 @@ use numtoa::NumToA;
 #[no_mangle]
 fn _start() {
     let mut buf = [0u8; 20];
-    let mut buf_for_f = dtoa::Buffer::new();
     // Arduino関数の動作確認
     /*
      * Random Numbers
@@ -18,16 +17,18 @@ fn _start() {
     serial::println("😀");
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    serial::println(arduino::random().numtoa_str(10, &mut buf));
-    serial::println(arduino::random().numtoa_str(10, &mut buf));
+    serial::print_int(arduino::random());
+    serial::print_int(arduino::random());
+    serial::println("");
+
     arduino::random_seed(2);
     serial::println("===SEED:2 ===");
-    serial::println(arduino::random().numtoa_str(10, &mut buf));
-    serial::println(arduino::random().numtoa_str(10, &mut buf));
+    serial::print_int(arduino::random());
+    serial::print_int(arduino::random());
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    serial::println(arduino::random().numtoa_str(10, &mut buf));
-    serial::println(arduino::random().numtoa_str(10, &mut buf));
+    serial::print_int(arduino::random());
+    serial::print_int(arduino::random());
 
     // resut
     // ===SEED:1 ===
@@ -48,11 +49,13 @@ fn _start() {
      * Trigonometry
      */
     serial::print("cos(0): ");
-    serial::println(buf_for_f.format(arduino::cos(0)));
-    serial::print("sin(0): ");
-    serial::println(buf_for_f.format(arduino::sin(0)));
-    serial::print("sin(0): ");
-    serial::println(buf_for_f.format(arduino::tan(0)));
+    // rustには?:の３項演算子がない
+    // 1.0ではない
+    serial::print_double(arduino::cos(0));
+    serial::print("sin(180): ");
+    serial::print_double(arduino::sin(180));
+    serial::print("tan(360): ");
+    serial::print_double(arduino::tan(360));
 
     /*
      * Math
