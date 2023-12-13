@@ -9,6 +9,7 @@ use numtoa::NumToA;
 #[no_mangle]
 fn _start() {
     let mut buf = [0u8; 20];
+    let mut buf_for_f = dtoa::Buffer::new();
     // Arduino関数の動作確認
     /*
      * Random Numbers
@@ -46,6 +47,12 @@ fn _start() {
     /*
      * Trigonometry
      */
+    serial::print("cos(0): ");
+    serial::println(buf_for_f.format(arduino::cos(0)));
+    serial::print("sin(0): ");
+    serial::println(buf_for_f.format(arduino::sin(0)));
+    serial::print("sin(0): ");
+    serial::println(buf_for_f.format(arduino::tan(0)));
 
     /*
      * Math
