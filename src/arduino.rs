@@ -17,11 +17,11 @@ extern "C" {
      * Trigonometry
      */
     #[link_name = "cos"]
-    fn _cos(rad: i32) -> f64;
+    fn _cos(rad: f64) -> f64;
     #[link_name = "sin"]
-    fn _sin(rad: i32) -> f64;
+    fn _sin(rad: f64) -> f64;
     #[link_name = "tan"]
-    fn _tan(rad: i32) -> f64;
+    fn _tan(rad: f64) -> f64;
 
     /*
      * Math
@@ -112,7 +112,7 @@ pub fn random_seed(seed: i64) {
 /// ```
 /// let result = arduino::cos(0.0); //result=1.0
 /// ```
-pub fn cos(rad: i32) -> f64 {
+pub fn cos(rad: f64) -> f64 {
     unsafe { _cos(rad) }
 }
 
@@ -122,7 +122,7 @@ pub fn cos(rad: i32) -> f64 {
 /// ```
 /// let result = arduino::sin(0.0); //result=0.0
 /// ```
-pub fn sin(rad: i32) -> f64 {
+pub fn sin(rad: f64) -> f64 {
     unsafe { _sin(rad) }
 }
 
@@ -132,7 +132,7 @@ pub fn sin(rad: i32) -> f64 {
 /// ```
 /// let result = arduino::tan(0.0); //result=1.0
 /// ```
-pub fn tan(rad: i32) -> f64 {
+pub fn tan(rad: f64) -> f64 {
     unsafe { _tan(rad) }
 }
 
