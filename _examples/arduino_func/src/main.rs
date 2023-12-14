@@ -15,17 +15,22 @@ fn _start() {
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
     serial::print_long(arduino::random());
+    serial::println("");
     serial::print_long(arduino::random());
     serial::println("");
 
     arduino::random_seed(2);
     serial::println("===SEED:2 ===");
     serial::print_long(arduino::random());
+    serial::println("");
     serial::print_long(arduino::random());
+    serial::println("");
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
     serial::print_long(arduino::random());
+    serial::println("");
     serial::print_long(arduino::random());
+    serial::println("");
 
     // resut
     // ===SEED:1 ===
@@ -45,17 +50,17 @@ fn _start() {
     /*
      * Trigonometry
      */
-    serial::print("cos(0.0): ");
-    serial::print_double(arduino::cos(0.0));
-    serial::println("");
-
-    serial::print("sin(1.0): ");
-    serial::print_double(arduino::sin(1.0));
-    serial::println("");
-
-    serial::print("tan(1.9): ");
-    serial::print_double(arduino::tan(1.0));
-    serial::println("");
+    // serial::print("cos(0.0): ");
+    // serial::print_double(arduino::cos(0.0));
+    // serial::println("");
+    //
+    // serial::print("sin(1.0): ");
+    // serial::print_double(arduino::sin(1.0));
+    // serial::println("");
+    //
+    // serial::print("tan(1.9): ");
+    // serial::print_double(arduino::tan(1.0));
+    // serial::println("");
 
     /*
      * Math

@@ -3,7 +3,7 @@ extern "C" {
     /*
      * Random Numbers
      */
-    #[link_name = "random"]
+    #[link_name = "randomArduino"]
     fn _random() -> i64;
     #[link_name = "randomSeed"]
     fn _randomSeed(seed: i64);
