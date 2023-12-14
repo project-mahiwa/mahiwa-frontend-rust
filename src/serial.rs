@@ -3,9 +3,13 @@ extern "C" {
     #[link_name = "print"]
     fn _print(utf8: *const u8, len: usize);
     #[link_name = "printInt"]
-    fn _printInt(int_num: i32);
+    fn _printInt(num: i32);
+    #[link_name = "printLong"]
+    fn _printLong(num: i64);
+    #[link_name = "printFloat"]
+    fn _printFloat(num: f32);
     #[link_name = "printDouble"]
-    fn _printDouble(double_num: f64);
+    fn _printDouble(num: f64);
 }
 
 /// Equivalent to Arduino's print
@@ -19,11 +23,17 @@ pub fn print(string: &str) {
     unsafe { _print(string.as_ptr(), string.len()) }
 }
 
-pub fn print_int(int_num: i32) {
-    unsafe { _printInt(int_num) }
+pub fn print_int(num: i32) {
+    unsafe { _printInt(num) }
 }
-pub fn print_double(double_num: f64) {
-    unsafe { _printDouble(double_num) }
+pub fn print_long(num: i64) {
+    unsafe { _printLong(num) }
+}
+pub fn print_float(num: f32) {
+    unsafe { _printFloat(num) }
+}
+pub fn print_double(num: f64) {
+    unsafe { _printDouble(num) }
 }
 
 /// Equivalent to Arduino's println

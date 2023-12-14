@@ -4,11 +4,8 @@
 use mahiwa_frontend_rust::arduino;
 use mahiwa_frontend_rust::serial;
 
-use numtoa::NumToA;
-
 #[no_mangle]
 fn _start() {
-    let mut buf = [0u8; 20];
     // Arduino関数の動作確認
     /*
      * Random Numbers
@@ -17,18 +14,18 @@ fn _start() {
     serial::println("😀");
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    serial::print_int(arduino::random());
-    serial::print_int(arduino::random());
+    serial::print_long(arduino::random());
+    serial::print_long(arduino::random());
     serial::println("");
 
     arduino::random_seed(2);
     serial::println("===SEED:2 ===");
-    serial::print_int(arduino::random());
-    serial::print_int(arduino::random());
+    serial::print_long(arduino::random());
+    serial::print_long(arduino::random());
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    serial::print_int(arduino::random());
-    serial::print_int(arduino::random());
+    serial::print_long(arduino::random());
+    serial::print_long(arduino::random());
 
     // resut
     // ===SEED:1 ===
@@ -48,14 +45,17 @@ fn _start() {
     /*
      * Trigonometry
      */
-    serial::print("cos(0): ");
-    // rustには?:の３項演算子がない
-    // 1.0ではない
-    serial::print_double(arduino::cos(0));
-    serial::print("sin(180): ");
-    serial::print_double(arduino::sin(180));
-    serial::print("tan(360): ");
-    serial::print_double(arduino::tan(360));
+    serial::print("cos(0.0): ");
+    serial::print_double(arduino::cos(0.0));
+    serial::println("");
+
+    serial::print("sin(1.0): ");
+    serial::print_double(arduino::sin(1.0));
+    serial::println("");
+
+    serial::print("tan(1.9): ");
+    serial::print_double(arduino::tan(1.0));
+    serial::println("");
 
     /*
      * Math
