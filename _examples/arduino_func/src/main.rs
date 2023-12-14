@@ -11,14 +11,12 @@ fn _start() {
      * Random Numbers
      */
     // randomSeedが効いていることを確認する
-    serial::println("😀");
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
     serial::print_long(arduino::random());
     serial::println("");
     serial::print_long(arduino::random());
     serial::println("");
-
     arduino::random_seed(2);
     serial::println("===SEED:2 ===");
     serial::print_long(arduino::random());
@@ -50,17 +48,31 @@ fn _start() {
     /*
      * Trigonometry
      */
-    // serial::print("cos(0.0): ");
-    // serial::print_double(arduino::cos(0.0));
-    // serial::println("");
-    //
-    // serial::print("sin(1.0): ");
-    // serial::print_double(arduino::sin(1.0));
-    // serial::println("");
-    //
-    // serial::print("tan(1.9): ");
-    // serial::print_double(arduino::tan(1.0));
-    // serial::println("");
+    if (arduino::cos(1.0) != 0.00) {
+        serial::println("cos(1.0)is not 0.00 ");
+    }
+    serial::print("cos(0.0): ");
+    serial::print_double(arduino::cos(0.0));
+    serial::println("");
+    serial::print("cos(1.0): ");
+    serial::print_double(arduino::cos(1.0));
+    serial::println("");
+
+    serial::print("sin(1.0): ");
+    serial::print_double(arduino::sin(1.0));
+    serial::println("");
+    serial::print("sin(0.0): ");
+    serial::print_double(arduino::sin(0.0));
+    serial::println("");
+
+    serial::print("tan(1.0): ");
+    serial::print_double(arduino::tan(1.0));
+    serial::println("");
+    serial::print("tan(1.1): ");
+    serial::print_double(arduino::tan(1.1));
+    serial::println("");
+
+    // 動作結果
 
     /*
      * Math
