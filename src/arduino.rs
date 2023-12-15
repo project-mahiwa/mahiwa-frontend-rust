@@ -144,7 +144,7 @@ pub fn tan(rad: f64) -> f64 {
 /// # Examples
 ///
 /// ```
-/// let result = arduino::abs(2);
+/// let result = arduino::abs(-2); //2
 /// ```
 pub fn abs(x: i32) -> i32 {
     unsafe { _abs(x) }

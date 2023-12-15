@@ -49,12 +49,10 @@ fn _start() {
      * Trigonometry
      */
     serial::print("cos(0.0): ");
-    let cos1 = arduino::cos(0.0);
-    serial::print_double(cos1, 6);
+    serial::print_double(arduino::cos(0.0), 6);
     serial::println("");
     serial::print("cos(1.0): ");
-    let cos2 = arduino::cos(1.0);
-    serial::print_double(cos2, 6);
+    serial::print_double(arduino::cos(1.0), 6);
     serial::println("");
 
     serial::print("sin(1.0): ");
