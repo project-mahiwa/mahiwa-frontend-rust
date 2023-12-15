@@ -7,9 +7,9 @@ extern "C" {
     #[link_name = "printLong"]
     fn _printLong(num: i64);
     #[link_name = "printFloat"]
-    fn _printFloat(num: f32);
+    fn _printFloat(num: f32, format: u8);
     #[link_name = "printDouble"]
-    fn _printDouble(num: f64);
+    fn _printDouble(num: f64, format: u8);
 }
 
 /// Equivalent to Arduino's print
@@ -29,11 +29,11 @@ pub fn print_int(num: i32) {
 pub fn print_long(num: i64) {
     unsafe { _printLong(num) }
 }
-pub fn print_float(num: f32) {
-    unsafe { _printFloat(num) }
+pub fn print_float(num: f32, format: u8) {
+    unsafe { _printFloat(num, format) }
 }
-pub fn print_double(num: f64) {
-    unsafe { _printDouble(num) }
+pub fn print_double(num: f64, format: u8) {
+    unsafe { _printDouble(num, format) }
 }
 
 /// Equivalent to Arduino's println

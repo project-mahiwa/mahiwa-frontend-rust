@@ -48,28 +48,27 @@ fn _start() {
     /*
      * Trigonometry
      */
-    if (arduino::cos(1.0) != 0.00) {
-        serial::println("cos(1.0)is not 0.00 ");
-    }
     serial::print("cos(0.0): ");
-    serial::print_double(arduino::cos(0.0));
+    let cos1 = arduino::cos(0.0);
+    serial::print_double(cos1, 6);
     serial::println("");
     serial::print("cos(1.0): ");
-    serial::print_double(arduino::cos(1.0));
+    let cos2 = arduino::cos(1.0);
+    serial::print_double(cos2, 6);
     serial::println("");
 
     serial::print("sin(1.0): ");
-    serial::print_double(arduino::sin(1.0));
+    serial::print_double(arduino::sin(1.0), 6);
     serial::println("");
     serial::print("sin(0.0): ");
-    serial::print_double(arduino::sin(0.0));
+    serial::print_double(arduino::sin(0.0), 6);
     serial::println("");
 
     serial::print("tan(1.0): ");
-    serial::print_double(arduino::tan(1.0));
+    serial::print_double(arduino::tan(1.0), 6);
     serial::println("");
     serial::print("tan(1.1): ");
-    serial::print_double(arduino::tan(1.1));
+    serial::print_double(arduino::tan(1.1), 6);
     serial::println("");
 
     // 動作結果
