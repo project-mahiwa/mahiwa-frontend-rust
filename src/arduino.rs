@@ -36,11 +36,11 @@ extern "C" {
     fn _max(x: i64, y: i64) -> i64;
     #[link_name = "min"]
     fn _min(x: i64, y: i64) -> i64;
-    #[link_name = "pow"]
+    #[link_name = "powArduino"]
     fn _pow(base: i64, exponent: i64) -> f64;
     #[link_name = "sq"]
     fn _sq(x: i32) -> i32;
-    #[link_name = "sqrt"]
+    #[link_name = "sqrtArduino"]
     fn _sqrt(x: i32) -> f64;
 
     /*
