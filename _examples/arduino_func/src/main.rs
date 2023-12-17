@@ -74,6 +74,9 @@ fn _start() {
     /*
      * Math
      */
+    serial::print("abs(-2): ");
+    serial::print_int(arduino::abs(-2));
+    serial::println("");
     /*
      * analog I/O
      */
