@@ -78,6 +78,9 @@ extern "C" {
 pub const INPUT: u8 = 1;
 pub const OUTPUT: u8 = 2;
 pub const INPUT_PULLUP: u8 = 3;
+// digitalWrite
+pub const HIGH: u8 = 1;
+pub const LOW: u8 = 0;
 
 /*
 * Random Numbers
