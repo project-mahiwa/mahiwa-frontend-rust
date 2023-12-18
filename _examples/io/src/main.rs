@@ -7,11 +7,13 @@ use mahiwa_frontend_rust::serial;
 #[no_mangle]
 fn _start() {
     serial::println("Rust IO test");
-    arduino::pin_mode(3, arduino::INPUT);
+    arduino::pin_mode(3, arduino::OUTPUT);
     loop {
         arduino::digital_write(3, arduino::HIGH);
+        serial::println("change");
         arduino::delay(1000);
         arduino::digital_write(3, arduino::LOW);
+        serial::println("change");
         arduino::delay(1000);
     }
 }
