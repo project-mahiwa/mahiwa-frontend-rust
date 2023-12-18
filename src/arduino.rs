@@ -74,6 +74,11 @@ extern "C" {
     fn _micros() -> u64;
 }
 
+// pinMode
+pub const INPUT: u8 = 1;
+pub const OUTPUT: u8 = 2;
+pub const INPUT_PULLUP: u8 = 3;
+
 /*
 * Random Numbers
 */
