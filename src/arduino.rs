@@ -4,7 +4,7 @@ extern "C" {
      * Random Numbers
      */
     #[link_name = "randomArduino"]
-    fn _random() -> i64;
+    fn _random() -> i32;
     #[link_name = "randomSeed"]
     fn _randomSeed(seed: i64);
 
@@ -31,13 +31,13 @@ extern "C" {
     #[link_name = "constrain"]
     fn _constrain(x: i32, a: i32, b: i32) -> i32;
     #[link_name = "map"]
-    fn _map(value: i64, from_low: i64, from_high: i64, to_low: i64, to_high: i64) -> i64;
+    fn _map(value: i32, from_low: i32, from_high: i32, to_low: i32, to_high: i32) -> i32;
     #[link_name = "max"]
-    fn _max(x: i64, y: i64) -> i64;
+    fn _max(x: i32, y: i32) -> i32;
     #[link_name = "min"]
-    fn _min(x: i64, y: i64) -> i64;
+    fn _min(x: i32, y: i32) -> i32;
     #[link_name = "powArduino"]
-    fn _pow(base: i64, exponent: i64) -> f64;
+    fn _pow(base: i32, exponent: i32) -> f64;
     #[link_name = "sq"]
     fn _sq(x: i32) -> i32;
     #[link_name = "sqrtArduino"]
@@ -47,31 +47,31 @@ extern "C" {
      * Analog I/O
      */
     #[link_name = "analogRead"]
-    fn _analogRead(pin: u8) -> u16;
+    fn _analogRead(pin: i32) -> i32;
     #[link_name = "analogWrite"]
-    fn _analogWrite(pin: u8, value: u8);
+    fn _analogWrite(pin: i32, value: i32);
 
     /*
      * Digital I/O
      */
     #[link_name = "digitalRead"]
-    fn _digitalRead(pin: u8) -> i32;
+    fn _digitalRead(pin: i32) -> i32;
     #[link_name = "digitalWrite"]
-    fn _digitalWrite(pin: u8, value: u8);
+    fn _digitalWrite(pin: i32, value: i32);
     #[link_name = "pinMode"]
-    fn _pinMode(pin: u8, mode: u8);
+    fn _pinMode(pin: i32, mode: i32);
 
     /*
      * Time
      */
     #[link_name = "delay"]
-    fn _delay(ms: u32);
+    fn _delay(ms: i64);
     #[link_name = "delayMicroseconds"]
-    fn _delayMicroseconds(us: u32);
+    fn _delayMicroseconds(us: i64);
     #[link_name = "millis"]
-    fn _millis() -> u64;
+    fn _millis() -> i64;
     #[link_name = "micros"]
-    fn _micros() -> u64;
+    fn _micros() -> i64;
 }
 
 // pinMode
@@ -91,7 +91,7 @@ pub const LOW: u8 = 0;
 /// ```
 /// let result = arduino::random(); //result=0~9
 /// ```
-pub fn random() -> i64 {
+pub fn random() -> i32 {
     unsafe { _random() }
 }
 
@@ -101,7 +101,7 @@ pub fn random() -> i64 {
 /// ```
 /// arduino::random_seed(0);
 /// ```
-pub fn random_seed(seed: i64) {
+pub fn random_seed(seed: i32) {
     unsafe {
         _randomSeed(seed);
     }
@@ -178,7 +178,7 @@ pub fn constrain(x: i32, a: i32, b: i32) -> i32 {
 ///  // 10bitの値を8bitにまるめる
 ///  let result = arduino::map(sensor_value,0,1023,0,255);
 /// ```
-pub fn map(value: i64, from_low: i64, from_high: i64, to_low: i64, to_high: i64) -> i64 {
+pub fn map(value: i32, from_low: i32, from_high: i32, to_low: i32, to_high: i32) -> i32 {
     unsafe { _map(value, from_low, from_high, to_low, to_high) }
 }
 
@@ -189,7 +189,7 @@ pub fn map(value: i64, from_low: i64, from_high: i64, to_low: i64, to_high: i64)
 /// ```
 ///  let result = arduino::max(2,3);//result=3
 /// ```
-pub fn max(x: i64, y: i64) -> i64 {
+pub fn max(x: i32, y: i32) -> i32 {
     unsafe { _max(x, y) }
 }
 
@@ -200,7 +200,7 @@ pub fn max(x: i64, y: i64) -> i64 {
 /// ```
 ///  let result = arduino::min(2,3);//result=2
 /// ```
-pub fn min(x: i64, y: i64) -> i64 {
+pub fn min(x: i32, y: i32) -> i32 {
     unsafe { _min(x, y) }
 }
 
@@ -210,7 +210,7 @@ pub fn min(x: i64, y: i64) -> i64 {
 /// ```
 /// let result = arduino::pow(2,3);//result=8
 /// ```
-pub fn pow(base: i64, exponent: i64) -> f64 {
+pub fn pow(base: i32, exponent: i32) -> f64 {
     unsafe { _pow(base, exponent) }
 }
 
@@ -244,7 +244,7 @@ pub fn sqrt(x: i32) -> f64 {
 /// ```
 /// let read=arduino::analog_read(2);
 /// ```
-pub fn analog_read(pin: u8) -> u16 {
+pub fn analog_read(pin: i32) -> i32 {
     unsafe { _analogRead(pin) }
 }
 
@@ -257,7 +257,7 @@ pub fn analog_read(pin: u8) -> u16 {
 /// ```
 /// arduino::analog_write(3,128);
 /// ```
-pub fn analog_write(pin: u8, value: u8) {
+pub fn analog_write(pin: i32, value: i32) {
     unsafe {
         _analogWrite(pin, value);
     }
@@ -273,7 +273,7 @@ pub fn analog_write(pin: u8, value: u8) {
 /// ```
 /// let read=arduino::digital_read(2);
 /// ```
-pub fn digital_read(pin: u8) -> i32 {
+pub fn digital_read(pin: i32) -> i32 {
     unsafe { _digitalRead(pin) }
 }
 
@@ -286,7 +286,7 @@ pub fn digital_read(pin: u8) -> i32 {
 /// ```
 /// arduino::digital_write(3,1);
 /// ```
-pub fn digital_write(pin: u8, value: u8) {
+pub fn digital_write(pin: i32, value: i32) {
     unsafe {
         _digitalWrite(pin, value);
     }
@@ -303,7 +303,7 @@ pub fn digital_write(pin: u8, value: u8) {
 /// ```
 /// arduino::pin_mode(2,1);
 /// ```
-pub fn pin_mode(pin: u8, mode: u8) {
+pub fn pin_mode(pin: i32, mode: i32) {
     unsafe {
         _pinMode(pin, mode);
     }
@@ -319,7 +319,7 @@ pub fn pin_mode(pin: u8, mode: u8) {
 /// ```
 /// arduino::delay(1000);
 /// ```
-pub fn delay(ms: u32) {
+pub fn delay(ms: i64) {
     unsafe {
         _delay(ms);
     }
@@ -332,7 +332,7 @@ pub fn delay(ms: u32) {
 /// ```
 /// arduino::delay_microseconds(1000);
 /// ```
-pub fn delay_microseconds(us: u32) {
+pub fn delay_microseconds(us: i64) {
     unsafe {
         _delayMicroseconds(us);
     }
@@ -344,7 +344,7 @@ pub fn delay_microseconds(us: u32) {
 /// ```
 /// let ms = arduino::millis();
 /// ```
-pub fn millis() -> u64 {
+pub fn millis() -> i64 {
     unsafe { _millis() }
 }
 /// Equivalent to Arduino's [micros](https://www.arduino.cc/reference/en/language/functions/time/micros/)
@@ -354,6 +354,6 @@ pub fn millis() -> u64 {
 /// ```
 /// let us = arduino::micros();
 /// ```
-pub fn micros() -> u64 {
+pub fn micros() -> i64 {
     unsafe { _micros() }
 }

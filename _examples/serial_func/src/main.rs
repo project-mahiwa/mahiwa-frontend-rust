@@ -29,29 +29,29 @@ fn _start() {
 
     // intとlongで表せる範囲が同じ．←直感と反するが仕様である
     serial::print("printInt(10):");
-    serial::print_int(10);
+    serial::print_i32(10);
     serial::println("");
 
     serial::print("printLong(1000):");
-    serial::print_long(1000);
+    serial::print_i64(1000);
     serial::println("");
 
     serial::print("printLong(2247483647)❌:");
     // longの最大値2147483647を超えた値を入れてみる(オーバーフロー)
-    serial::print_long(2247483647);
+    serial::print_i64(2247483647);
     serial::println("");
 
     serial::print("printFloat(1.1111):");
-    serial::print_float(1.1111, 4);
+    serial::print_f32(1.1111, 4);
     serial::println("");
 
     serial::print("printFloat(1.123456789012345)❌:");
     // float32の最大値を超えた値を入れてみる
-    serial::print_float(1.123456789012345, 15);
+    serial::print_f32(1.123456789012345, 15);
     serial::println("");
 
     serial::print("printDouble(1.123456789012345):");
-    serial::print_double(1.123456789012345, 15);
+    serial::print_f64(1.123456789012345, 15);
     serial::println("");
     // loop {
     //     arduino::delay(900);

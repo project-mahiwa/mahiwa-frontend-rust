@@ -13,21 +13,21 @@ fn _start() {
     // randomSeedが効いていることを確認する
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    serial::print_long(arduino::random());
+    serial::print_i64(arduino::random());
     serial::println("");
-    serial::print_long(arduino::random());
+    serial::print_i64(arduino::random());
     serial::println("");
     arduino::random_seed(2);
     serial::println("===SEED:2 ===");
-    serial::print_long(arduino::random());
+    serial::print_i64(arduino::random());
     serial::println("");
-    serial::print_long(arduino::random());
+    serial::print_i64(arduino::random());
     serial::println("");
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    serial::print_long(arduino::random());
+    serial::print_i64(arduino::random());
     serial::println("");
-    serial::print_long(arduino::random());
+    serial::print_i64(arduino::random());
     serial::println("");
 
     // resut
@@ -49,24 +49,24 @@ fn _start() {
      * Trigonometry
      */
     serial::print("cos(0.0): ");
-    serial::print_double(arduino::cos(0.0), 6);
+    serial::print_f64(arduino::cos(0.0), 6);
     serial::println("");
     serial::print("cos(1.0): ");
-    serial::print_double(arduino::cos(1.0), 6);
+    serial::print_f64(arduino::cos(1.0), 6);
     serial::println("");
 
     serial::print("sin(1.0): ");
-    serial::print_double(arduino::sin(1.0), 6);
+    serial::print_f64(arduino::sin(1.0), 6);
     serial::println("");
     serial::print("sin(0.0): ");
-    serial::print_double(arduino::sin(0.0), 6);
+    serial::print_f64(arduino::sin(0.0), 6);
     serial::println("");
 
     serial::print("tan(1.0): ");
-    serial::print_double(arduino::tan(1.0), 6);
+    serial::print_f64(arduino::tan(1.0), 6);
     serial::println("");
     serial::print("tan(1.1): ");
-    serial::print_double(arduino::tan(1.1), 6);
+    serial::print_f64(arduino::tan(1.1), 6);
     serial::println("");
 
     // 動作結果
@@ -75,7 +75,7 @@ fn _start() {
      * Math
      */
     serial::print("abs(-2): ");
-    serial::print_int(arduino::abs(-2));
+    serial::print_i32(arduino::abs(-2));
     serial::println("");
     /*
      * analog I/O
