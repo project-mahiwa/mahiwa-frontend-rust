@@ -13,21 +13,21 @@ fn _start() {
     // randomSeedが効いていることを確認する
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    serial::print_i64(arduino::random());
+    serial::print_i32(arduino::random());
     serial::println("");
-    serial::print_i64(arduino::random());
+    serial::print_i32(arduino::random());
     serial::println("");
     arduino::random_seed(2);
     serial::println("===SEED:2 ===");
-    serial::print_i64(arduino::random());
+    serial::print_i32(arduino::random());
     serial::println("");
-    serial::print_i64(arduino::random());
+    serial::print_i32(arduino::random());
     serial::println("");
     serial::println("===SEED:1 ===");
     arduino::random_seed(1);
-    serial::print_i64(arduino::random());
+    serial::print_i32(arduino::random());
     serial::println("");
-    serial::print_i64(arduino::random());
+    serial::print_i32(arduino::random());
     serial::println("");
 
     // resut
@@ -86,9 +86,4 @@ fn _start() {
     /*
      * Time
      */
-    serial::print("hello mahiwa written in Rust");
-    loop {
-        arduino::delay(900);
-        serial::println("hello mahiwa");
-    }
 }

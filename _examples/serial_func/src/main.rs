@@ -1,7 +1,6 @@
 #![no_std]
 #![no_main]
 // mahiwa-backendが認識するWebAssemblyのエントリー関数が_startなのでそれに合わせる
-use mahiwa_frontend_rust::arduino;
 use mahiwa_frontend_rust::serial;
 
 // 結果
@@ -28,29 +27,31 @@ fn _start() {
     serial::println("print UTF-8 : 🍆");
 
     // intとlongで表せる範囲が同じ．←直感と反するが仕様である
-    serial::print("printInt(10):");
+    serial::print("printI32(10):");
     serial::print_i32(10);
     serial::println("");
 
-    serial::print("printLong(1000):");
-    serial::print_i64(1000);
-    serial::println("");
+    // ↓コンパイルエラーになってくれる
+    // serial::print("printI32(2247483647)❌:");
+    // // longの最大値2147483647を超えた値を入れてみる(オーバーフロー)
+    // serial::print_i32(2247483647);
+    // serial::println("");
 
-    serial::print("printLong(2247483647)❌:");
+    serial::print("printI64(2247483647):");
     // longの最大値2147483647を超えた値を入れてみる(オーバーフロー)
     serial::print_i64(2247483647);
     serial::println("");
 
-    serial::print("printFloat(1.1111):");
+    serial::print("printF32(1.1111):");
     serial::print_f32(1.1111, 4);
     serial::println("");
 
-    serial::print("printFloat(1.123456789012345)❌:");
+    serial::print("printF32(1.123456789012345)❌:");
     // float32の最大値を超えた値を入れてみる
     serial::print_f32(1.123456789012345, 15);
     serial::println("");
 
-    serial::print("printDouble(1.123456789012345):");
+    serial::print("printF64(1.123456789012345):");
     serial::print_f64(1.123456789012345, 15);
     serial::println("");
     // loop {

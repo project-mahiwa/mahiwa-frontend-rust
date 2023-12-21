@@ -6,7 +6,7 @@ extern "C" {
     #[link_name = "randomArduino"]
     fn _random() -> i32;
     #[link_name = "randomSeed"]
-    fn _randomSeed(seed: i64);
+    fn _randomSeed(seed: i32);
 
     /*
      * Characters
