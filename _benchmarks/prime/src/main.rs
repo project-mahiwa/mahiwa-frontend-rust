@@ -17,7 +17,7 @@ fn is_prime(num: i32) -> bool {
 #[no_mangle]
 fn _start() {
     arduino::delay(5000);
-    serial::println("Rust mahiwa | check_1s");
+    serial::println("Rust mahiwa | prime");
     let start = arduino::micros();
     let result = is_prime(2147483647);
     let end = arduino::micros();
