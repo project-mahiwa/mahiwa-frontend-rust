@@ -7,13 +7,15 @@ fn is_prime(num: i32) -> bool {
     if num <= 1 {
         return false;
     }
-    for i in 2..=((num as f64).sqrt() as i32) {
+    let num_max = (num as f64).sqrt() as i32;
+    for i in 2..=num_max {
         if num % i == 0 {
             return false;
         }
     }
-    true
+    return true;
 }
+
 #[no_mangle]
 fn _start() {
     arduino::delay(5000);
