@@ -75,10 +75,11 @@ pub fn wlan_is_connected() -> bool {
 /// ```
 /// let local_ip = network::wlan_local_ip();
 /// ```
-pub fn wlan_local_ip() -> String {
+pub fn wlan_local_ip() -> &'static str {
     let mut buf = [0 as c_char; 16];
     unsafe {
         _wlan_local_ip(buf.as_mut_ptr());
-        CStr::from_ptr(buf.as_ptr()).to_string_lossy().into_owned()
+        let resutl = CStr::from_ptr(buf.as_ptr()).to_str();
+        resutl.unwrap()
     }
 }
