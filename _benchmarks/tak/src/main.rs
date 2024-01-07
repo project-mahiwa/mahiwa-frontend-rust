@@ -3,32 +3,23 @@
 // mahiwa-backendが認識するWebAssemblyのエントリー関数が_startなのでそれに合わせる
 use mahiwa_frontend_rust::{arduino, serial};
 
-fn is_prime(num: i32) -> bool {
-    if num <= 1 {
-        return false;
+fn tak(x: i32, y: i32, z: i32) -> i32 {
+    if y < x {
+        tak(tak(x - 1, y, z), tak(y - 1, z, x), tak(z - 1, x, y))
+    } else {
+        z
     }
-    let num_max = (num as f64).sqrt() as i32;
-    for i in 2..=num_max {
-        if num % i == 0 {
-            return false;
-        }
-    }
-    return true;
 }
 
 #[no_mangle]
 fn _start() {
     arduino::delay(5000);
-    serial::println("Rust mahiwa | prime");
+    serial::println("Rust mahiwa | check_1s");
     let start = arduino::micros();
-    let result = is_prime(2147483647);
+    let result = tak(14, 5, 0);
     let end = arduino::micros();
     serial::print("result: ");
-    if result {
-        serial::print("prime");
-    } else {
-        serial::print("not prime");
-    }
+    serial::print_i32(result);
     serial::println("");
     serial::print("time(micro): ");
     serial::print_i64(end - start);
